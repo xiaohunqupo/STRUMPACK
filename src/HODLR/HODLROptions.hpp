@@ -244,7 +244,7 @@ namespace strumpack {
       /**
        * Enable/disable the N^1.5 entry evaluation-based construction.
        */
-      void set_BF_entry_n15(bool l) { BF_entry_n15_ = l; }
+      void set_BF_entry_n15(int l) { BF_entry_n15_ = l; }
 
       /**
        * Get the initial guess for the rank.
@@ -323,7 +323,7 @@ namespace strumpack {
       /**
        * Returns whether or not to use N^1.5 entry-evaluation-based algorithm.
        */
-      bool BF_entry_n15() const { return BF_entry_n15_; }
+      int BF_entry_n15() const { return BF_entry_n15_; }
 
       /**
        * Parse the command line options given by argc and argv.  The
@@ -354,7 +354,7 @@ namespace strumpack {
       int knn_hodlrbf_ = 64;
       int knn_lrbf_ = 128;
       bool less_adapt_ = true;
-      bool BF_entry_n15_ = false;
+      int BF_entry_n15_ = 0;
 
       void set_defaults() {
         this->type_ = structured::Type::HODLR;

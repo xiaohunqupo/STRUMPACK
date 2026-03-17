@@ -89,8 +89,7 @@ namespace strumpack {
          {"hodlr_lr_leaf",               required_argument, 0, 15},
          {"hodlr_enable_less_adapt",     no_argument, 0, 16},
          {"hodlr_disable_less_adapt",    no_argument, 0, 17},
-         {"hodlr_enable_BF_entry_n15",     no_argument, 0, 18},
-         {"hodlr_disable_BF_entry_n15",    no_argument, 0, 19},
+         {"hodlr_BF_entry_n15",          required_argument, 0, 18},
          {"hodlr_verbose",               no_argument, 0, 'v'},
          {"hodlr_quiet",                 no_argument, 0, 'q'},
          {"help",                        no_argument, 0, 'h'},
@@ -179,8 +178,11 @@ namespace strumpack {
         } break;
         case 16: set_less_adapt(true); break;
         case 17: set_less_adapt(false); break;
-        case 18: set_BF_entry_n15(true); break;
-        case 19: set_BF_entry_n15(false); break;
+        case 18: {
+          std::istringstream iss(optarg);
+          iss >> BF_entry_n15_;
+          set_BF_entry_n15(BF_entry_n15_); 
+        }break;
         case 'v': this->set_verbose(true); break;
         case 'q': this->set_verbose(false); break;
         case 'h': describe_options(); break;
@@ -231,10 +233,8 @@ namespace strumpack {
                 << less_adapt() << ")" << std::endl
                 << "#   --hodlr_disable_less_adapt (default "
                 << !less_adapt() << ")" << std::endl
-                << "#   --hodlr_enable_BF_entry_n15 (default "
+                << "#   --hodlr_BF_entry_n15 (default "
                 << BF_entry_n15() << ")" << std::endl
-                << "#   --hodlr_disable_BF_entry_n15 (default "
-                << !BF_entry_n15() << ")" << std::endl
                 << "#   --hodlr_verbose or -v (default "
                 << this->verbose() << ")" << std::endl
                 << "#   --hodlr_quiet or -q (default "

@@ -33,6 +33,7 @@
 #define BLR_BATCH_HPP
 
 #include <cassert>
+#include <algorithm>
 
 #include "misc/Tools.hpp"
 #include "BLRTileBLAS.hpp"
