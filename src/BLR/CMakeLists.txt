@@ -13,7 +13,6 @@ target_sources(strumpack
 
 if(STRUMPACK_USE_CUDA OR STRUMPACK_USE_HIP OR STRUMPACK_USE_SYCL)
   target_sources(strumpack PRIVATE
-    ${CMAKE_CURRENT_LIST_DIR}/BLRMatrix.GPU.cpp
     ${CMAKE_CURRENT_LIST_DIR}/BLRBatch.hpp
     ${CMAKE_CURRENT_LIST_DIR}/BLRBatch.cpp)
 endif()
@@ -36,12 +35,6 @@ if(STRUMPACK_USE_MPI)
     ${CMAKE_CURRENT_LIST_DIR}/BLRMatrixMPI.hpp
     ${CMAKE_CURRENT_LIST_DIR}/BLRMatrixMPI.cpp
     ${CMAKE_CURRENT_LIST_DIR}/BLRExtendAdd.cpp)
-
-  if(STRUMPACK_USE_CUDA OR STRUMPACK_USE_HIP OR STRUMPACK_USE_SYCL)
-    target_sources(strumpack
-      PRIVATE
-      ${CMAKE_CURRENT_LIST_DIR}/BLRMatrixMPI.GPU.cpp)
-  endif()
 
   install(FILES
     BLRMatrixMPI.hpp
